@@ -1,6 +1,6 @@
 {
   "name": "twsh",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "While developing, you can post (and read) tweet.",
   "bin": {
     "twsh": "./lib/routes/index.js"
