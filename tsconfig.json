@@ -1,0 +1,17 @@
+{
+  "target": "ESNEXT",
+  "module": "ESNext",
+  "sourceMap": true,
+  "compilerOptions": {
+    "baseUrl": ".",
+    "outDir": "./lib/",
+    "lib": [ "es2015" ]
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": [
+    ".git",
+    "node_modules"
+  ]
+}
