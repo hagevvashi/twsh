@@ -7,7 +7,7 @@ import changeUser from '../app/change-user';
 
 const { argv } = process;
 
-program.version('1.0.1', '-v, --version');
+program.version('1.0.2', '-v, --version');
 
 program
   .command('change_user')
