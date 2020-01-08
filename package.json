@@ -28,12 +28,12 @@
   "homepage": "https://github.com/azawakh/twsh",
   "dependencies": {
     "commander": "2.19.0",
-    "inquirer": "6.2.2",
+    "inquirer": "6.5.2",
     "node-localstorage": "1.3.1",
     "oauth": "0.9.15"
   },
   "devDependencies": {
-    "@types/inquirer": "6.0.0",
+    "@types/inquirer": "6.5.0",
     "@types/jest": "24.0.11",
     "@types/node": "11.11.6",
     "@types/node-localstorage": "1.3.0",
