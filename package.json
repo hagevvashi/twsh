@@ -50,6 +50,6 @@
     "tern": "0.23.0",
     "ts-jest": "24.3.0",
     "ts-node": "8.0.3",
-    "typescript": "3.3.4000"
+    "typescript": "3.8.2"
   }
 }
