@@ -41,4 +41,4 @@ $ twsh change_user
 
 ## License
 
-MIT @ azawakh
+MIT @ naoto-ota
