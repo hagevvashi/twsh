@@ -1,18 +1,19 @@
-import { oauth1tokenCallback } from 'oauth';
-import TwitterError from '../../../src/type/twitter-error';
-import twitterOauth from '../../../src/lib/twitter-oauth';
-import authorize from '../../../src/lib/authenticate/authorize';
+import { oauth1tokenCallback } from "oauth";
+import type { TwitterError } from "../../../types/twitter-error";
+import twitterOauth from "../../../src/lib/twitter-oauth";
+import authorize from "../../../src/lib/authenticate/authorize";
 
 describe("authorize module's test", () => {
   it("Just returns twitter api's return value asynchronously.", async () => {
-    const error: null = null;
-    const accessToken: string = 'accessToken';
-    const accessTokenSecret: string = 'accessTokenSecret';
-    const result: { screen_name: string } = { screen_name: 'screen_name_a' };
+    const error = null;
+    const accessToken = "accessToken";
+    const accessTokenSecret = "accessTokenSecret";
+    // eslint-disable-next-line @typescript-eslint/camelcase
+    const result = { screen_name: "screen_name_a" };
 
     const twitterOauthGetOAuthAccessTokenSpy: jest.SpyInstance = jest.spyOn(
       twitterOauth,
-      'getOAuthAccessToken'
+      "getOAuthAccessToken"
     );
 
     twitterOauthGetOAuthAccessTokenSpy.mockImplementation(
@@ -26,9 +27,9 @@ describe("authorize module's test", () => {
       }
     );
 
-    const requestToken: string = 'requestToken';
-    const requestTokenSecret: string = 'requestTokenSecret';
-    const pin: string = 'pin';
+    const requestToken = "requestToken";
+    const requestTokenSecret = "requestTokenSecret";
+    const pin = "pin";
 
     const oauthResult: {
       error: TwitterError | null;

@@ -1,12 +1,12 @@
-import { OAuth } from 'oauth';
-import { consumerKey, consumerSecret } from './config';
+import { OAuth } from "oauth";
+import { consumerKey, consumerSecret } from "./config";
 
 export default new OAuth(
-  'https://twitter.com/oauth/request_token',
-  'https://twitter.com/oauth/access_token',
+  "https://twitter.com/oauth/request_token",
+  "https://twitter.com/oauth/access_token",
   consumerKey,
   consumerSecret,
-  '1.0A',
+  "1.0A",
   null,
-  'HMAC-SHA1'
+  "HMAC-SHA1"
 );

@@ -1,17 +1,24 @@
 {
-  "target": "ESNEXT",
-  "module": "ESNext",
-  "sourceMap": true,
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "esnext",
+    "lib": ["ESNEXT"],
+    "module": "esnext",
+
     "outDir": "./lib/",
-    "lib": [ "es2015" ]
+
+    "allowJs": true,
+    "declaration": true,
+    "downlevelIteration": true,
+
+    "strict": true,
+    "noImplicitAny": true,
+
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+  "include": ["./src/**/*", "./tests/**/*", "./types/**/*"]
 }

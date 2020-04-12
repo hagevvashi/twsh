@@ -4,7 +4,7 @@
 export enum ErrorType {
   NEVER_AUTHED = 101,
   UNAUTHED_SCREEN_NAME = 102,
-  VERIFY_FAIL = 103
+  VERIFY_FAIL = 103,
 }
 
 /**
@@ -36,7 +36,7 @@ export class ErrorController {
   private static ErrorList: ErrorInfo[] = [
     new ErrorInfo(
       ErrorType.NEVER_AUTHED,
-      'You have never authed yet. Please authenticate.'
+      "You have never authed yet. Please authenticate."
     ),
     new ErrorInfo(
       ErrorType.UNAUTHED_SCREEN_NAME,
@@ -44,8 +44,8 @@ export class ErrorController {
     ),
     new ErrorInfo(
       ErrorType.VERIFY_FAIL,
-      'Verify failed. Please authenticate again.'
-    )
+      "Verify failed. Please authenticate again."
+    ),
   ];
 
   /**
@@ -54,6 +54,6 @@ export class ErrorController {
    * @returns {ErrorInfo}
    */
   public static getError(err: ErrorType): ErrorInfo {
-    return this.ErrorList.find(item => item.getCode() === err);
+    return this.ErrorList.find((item) => item.getCode() === err);
   }
 }

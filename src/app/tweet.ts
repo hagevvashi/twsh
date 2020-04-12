@@ -1,19 +1,19 @@
-import TwitterError from '../type/twitter-error';
-import PostResult from '../type/post-result';
-import { askTweet } from '../lib/ask';
-import localStorage from '../lib/local-storage';
-import login from '../lib/login';
-import postTweet from '../lib/post-tweet';
+import type { TwitterError } from "../../types/twitter-error";
+import type { PostResult } from "../../types/post-result";
+import { askTweet } from "../lib/ask";
+import localStorage from "../lib/local-storage";
+import login from "../lib/login";
+import postTweet from "../lib/post-tweet";
 
 export default async (): Promise<void> => {
-  const currentUser: string = localStorage.getItem('current_user');
+  const currentUser: string = localStorage.getItem("current_user");
 
   // has not been oauthed yet
   if (!currentUser) {
     process.stdout.write(
       `screen_name: ${currentUser} hasn't been authed yet.\n`
     );
-    process.stdout.write('first, you must oauth.');
+    process.stdout.write("first, you must oauth.");
     return;
   }
 
