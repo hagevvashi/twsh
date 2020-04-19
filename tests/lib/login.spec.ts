@@ -69,8 +69,8 @@ describe("login module's test", () => {
     getItemSpy.mockImplementation((): string => JSON.stringify(mockAuthData));
 
     const { error } = await login(unauthedScreenName);
-    const { message } = error;
     if (!error) throw new Error("test fail");
+    const { message } = error;
     expect(message).toBe(
       ErrorController.getError(ErrorType.UNAUTHED_SCREEN_NAME).getMessage()
     );

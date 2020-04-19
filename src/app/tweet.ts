@@ -6,7 +6,7 @@ import login from "../lib/login";
 import postTweet from "../lib/post-tweet";
 
 export default async (): Promise<void> => {
-  const currentUser: string = localStorage.getItem("current_user");
+  const currentUser = localStorage.getItem("current_user");
 
   // has not been oauthed yet
   if (!currentUser) {
@@ -19,7 +19,7 @@ export default async (): Promise<void> => {
 
   const { error, accessToken, accessTokenSecret } = await login(currentUser);
   // login failed
-  if (error) {
+  if (error || !accessToken || !accessTokenSecret) {
     process.stdout.write(`${error}\n`);
     process.stdout.write(`screen_name: ${currentUser}\n`);
     return;
@@ -35,7 +35,7 @@ export default async (): Promise<void> => {
   );
 
   // something is wrong
-  const postError: TwitterError = postResult.error;
+  const postError = postResult.error;
   if (postError) {
     const { statusCode, data }: TwitterError = postError;
     process.stdout.write(`statusCode: ${statusCode}, data: ${data}\n`);

@@ -31,8 +31,8 @@ describe("This is the getRequestToken module's test.", () => {
     expect(retVal.requestTokenSecret).toBe(requestTokenSecret);
   });
 
-  it("If twitter api returns null as error, getRequestToken returns null, requestToken and requestTokenSecret.", async () => {
-    const error = null;
+  it("If twitter api returns null as error, getRequestToken returns { statusCode: 999 }, requestToken and requestTokenSecret.", async () => {
+    const error = { statusCode: 999 };
     const requestToken = "failed_request_oken";
     const requestTokenSecret = "failed_request_token_secret";
     const parsedQueryString = { foo: "bar" };

@@ -9,7 +9,7 @@ export default async (
   accessToken: string | null;
   accessTokenSecret: string | null;
 }> => {
-  const savedAuthData: string = localStorage.getItem("user_auth_data");
+  const savedAuthData = localStorage.getItem("user_auth_data");
   if (!savedAuthData) {
     return {
       error: new Error(
@@ -20,7 +20,7 @@ export default async (
     };
   }
 
-  const userAuthData: object = JSON.parse(savedAuthData);
+  const userAuthData = JSON.parse(savedAuthData);
 
   try {
     const { accessToken, accessTokenSecret } = userAuthData[screenName];

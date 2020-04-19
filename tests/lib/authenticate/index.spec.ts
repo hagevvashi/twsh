@@ -1,4 +1,3 @@
-import type { TwitterError } from "../../../types/twitter-error";
 import authenticate from "../../../src/lib/authenticate";
 import authorize from "../../../src/lib/authenticate/authorize";
 import getRequestToken from "../../../src/lib/authenticate/get-request-token";
@@ -23,8 +22,11 @@ describe("authenticate module's test", () => {
         })
       )
     );
-    const { error }: { error: TwitterError } = await authenticate();
-    const { statusCode }: { statusCode: number } = error;
+    const { error } = await authenticate();
+    if (!error) {
+      throw new Error("test failed");
+    }
+    const { statusCode } = error;
     expect(statusCode).toBe(0);
   });
 
@@ -50,7 +52,10 @@ describe("authenticate module's test", () => {
       )
     );
 
-    const { error }: { error: TwitterError } = await authenticate();
+    const { error } = await authenticate();
+    if (!error) {
+      throw new Error("test failed");
+    }
     const { statusCode }: { statusCode: number } = error;
     expect(statusCode).toBe(0);
   });

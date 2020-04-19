@@ -5,7 +5,7 @@ import authorize from "../../../src/lib/authenticate/authorize";
 
 describe("authorize module's test", () => {
   it("Just returns twitter api's return value asynchronously.", async () => {
-    const error = null;
+    const error = { statusCode: 999 };
     const accessToken = "accessToken";
     const accessTokenSecret = "accessTokenSecret";
     // eslint-disable-next-line @typescript-eslint/camelcase

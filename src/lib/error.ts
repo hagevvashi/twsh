@@ -5,6 +5,7 @@ export enum ErrorType {
   NEVER_AUTHED = 101,
   UNAUTHED_SCREEN_NAME = 102,
   VERIFY_FAIL = 103,
+  UNKNOWN_ERROR = 999,
 }
 
 /**
@@ -54,6 +55,9 @@ export class ErrorController {
    * @returns {ErrorInfo}
    */
   public static getError(err: ErrorType): ErrorInfo {
-    return this.ErrorList.find((item) => item.getCode() === err);
+    return (
+      this.ErrorList.find((item) => item.getCode() === err) ??
+      new ErrorInfo(ErrorType.UNKNOWN_ERROR, "Something went wrong.")
+    );
   }
 }

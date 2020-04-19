@@ -1,8 +1,7 @@
 // import { Socket } from 'net';
 import * as http from "http";
 import { dataCallback } from "oauth";
-import PostResult from "../../types/post-result";
-import TwitterError from "../../types/twitter-error";
+import { PostResult } from "../../types/post-result";
 import twitterOauth from "../../src/lib/twitter-oauth";
 import postTweet from "../../src/lib/post-tweet";
 
@@ -35,7 +34,10 @@ describe("post-tweet module's test", () => {
           const data = {
             error: "Page Not Found",
           };
-          callback({ statusCode, data }, data, response);
+          if (!callback) {
+            throw new Error("Something went wrong.");
+          }
+          callback({ statusCode, data }, "Page Not Found", response);
         })
     );
 
@@ -50,7 +52,7 @@ describe("post-tweet module's test", () => {
     );
 
     // something is wrong
-    const postError: TwitterError = postResult.error;
+    const postError = postResult.error;
 
     expect(postError).not.toBe(null);
   });
@@ -73,7 +75,10 @@ describe("post-tweet module's test", () => {
         new http.ClientRequest(url, (response: http.IncomingMessage): void => {
           const data =
             '{"created_at": "Thu Mar 14 04:34:58 +0000 2019", "id": 123456789, "id_string": "1234356789"}';
-          callback(null, data, response);
+          if (!callback) {
+            throw new Error("Something went wrong.");
+          }
+          callback({ statusCode: 999 }, data, response);
         })
     );
 
@@ -110,7 +115,10 @@ describe("post-tweet module's test", () => {
       ): http.ClientRequest =>
         new http.ClientRequest(url, (response: http.IncomingMessage): void => {
           const data: Buffer = retVal;
-          callback(null, data, response);
+          if (!callback) {
+            throw new Error("Something went wrong.");
+          }
+          callback({ statusCode: 999 }, data, response);
         })
     );
 

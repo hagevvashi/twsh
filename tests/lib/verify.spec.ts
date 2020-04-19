@@ -28,7 +28,7 @@ describe("verify module's test", () => {
         return new http.ClientRequest(
           url,
           (response: http.IncomingMessage): void => {
-            callback(null, data, response);
+            callback({ statusCode: 999 }, data, response);
           }
         );
       }
