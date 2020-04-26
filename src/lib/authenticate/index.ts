@@ -1,8 +1,8 @@
-import { TwitterError } from "../../../types/twitter-error";
 import { askPin } from "../ask";
 import localStorage from "../local-storage";
 import getRequestToken from "./get-request-token";
 import authorize from "./authorize";
+import type { TwitterError } from "../twitter-oauth";
 
 type AuthData = {
   accessToken: string;

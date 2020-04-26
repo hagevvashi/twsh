@@ -1,24 +1,17 @@
 {
   "compilerOptions": {
-    "target": "esnext",
-    "lib": ["ESNEXT"],
-    "module": "esnext",
-
+    "target": "es2019",
+    "module": "commonjs",
     "outDir": "./lib/",
-
-    "allowJs": true,
     "declaration": true,
     "downlevelIteration": true,
-
     "strict": true,
     "noImplicitAny": true,
-
     "noUnusedLocals": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
-
     "moduleResolution": "node",
     "esModuleInterop": true
   },
-  "include": ["./src/**/*", "./tests/**/*", "./types/**/*"]
+  "include": ["./src/**/*"]
 }

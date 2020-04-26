@@ -1,5 +1,5 @@
-import type { TwitterError } from "../../../types/twitter-error";
 import twitterOauth from "../twitter-oauth";
+import type { TwitterError } from "../twitter-oauth";
 
 export default (): Promise<{
   err: TwitterError | null;

@@ -1,6 +1,6 @@
 import { oauth1tokenCallback } from "oauth";
-import type { TwitterError } from "../../../types/twitter-error";
 import twitterOauth from "../../../src/lib/twitter-oauth";
+import type { TwitterError } from "../../../src/lib/twitter-oauth";
 import getRequestToken from "../../../src/lib/authenticate/get-request-token";
 
 describe("This is the getRequestToken module's test.", () => {

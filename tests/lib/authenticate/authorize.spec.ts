@@ -1,6 +1,6 @@
 import { oauth1tokenCallback } from "oauth";
-import type { TwitterError } from "../../../types/twitter-error";
 import twitterOauth from "../../../src/lib/twitter-oauth";
+import type { TwitterError } from "../../../src/lib/twitter-oauth";
 import authorize from "../../../src/lib/authenticate/authorize";
 
 describe("authorize module's test", () => {

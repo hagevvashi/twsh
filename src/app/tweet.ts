@@ -1,5 +1,3 @@
-import type { TwitterError } from "../../types/twitter-error";
-import type { PostResult } from "../../types/post-result";
 import { askTweet } from "../lib/ask";
 import localStorage from "../lib/local-storage";
 import login from "../lib/login";
@@ -27,8 +25,8 @@ export default async (): Promise<void> => {
 
   // already logged in
   process.stdout.write(`you will tweet as ${currentUser}\n`);
-  const tweetContent: string = await askTweet();
-  const postResult: PostResult = await postTweet(
+  const tweetContent = await askTweet();
+  const postResult = await postTweet(
     tweetContent,
     accessToken,
     accessTokenSecret
@@ -37,7 +35,7 @@ export default async (): Promise<void> => {
   // something is wrong
   const postError = postResult.error;
   if (postError) {
-    const { statusCode, data }: TwitterError = postError;
+    const { statusCode, data } = postError;
     process.stdout.write(`statusCode: ${statusCode}, data: ${data}\n`);
   }
 };

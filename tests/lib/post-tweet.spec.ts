@@ -1,7 +1,6 @@
 // import { Socket } from 'net';
 import * as http from "http";
 import { dataCallback } from "oauth";
-import { PostResult } from "../../types/post-result";
 import twitterOauth from "../../src/lib/twitter-oauth";
 import postTweet from "../../src/lib/post-tweet";
 
@@ -45,7 +44,7 @@ describe("post-tweet module's test", () => {
     const accessToken = "accessToken";
     const accessTokenSecret = "accessTokenSecret";
 
-    const postResult: PostResult = await postTweet(
+    const postResult = await postTweet(
       tweetContent,
       accessToken,
       accessTokenSecret
@@ -78,7 +77,7 @@ describe("post-tweet module's test", () => {
           if (!callback) {
             throw new Error("Something went wrong.");
           }
-          callback({ statusCode: 999 }, data, response);
+          callback(null, data, response);
         })
     );
 
@@ -86,7 +85,7 @@ describe("post-tweet module's test", () => {
     const accessToken = "accessToken";
     const accessTokenSecret = "accessTokenSecret";
 
-    const postResult: PostResult = await postTweet(
+    const postResult = await postTweet(
       tweetContent,
       accessToken,
       accessTokenSecret
@@ -126,7 +125,7 @@ describe("post-tweet module's test", () => {
     const accessToken = "accessToken";
     const accessTokenSecret = "accessTokenSecret";
 
-    const postResult: PostResult = await postTweet(
+    const postResult = await postTweet(
       tweetContent,
       accessToken,
       accessTokenSecret
