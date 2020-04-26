@@ -35,6 +35,9 @@ module.exports = {
   overrides: [
     {
       files: ["**/*.spec.ts"],
+      parserOptions: {
+        project: "./tsconfig.test.json",
+      },
       plugins: ["jest"],
       env: { jest: true },
       rules: {
