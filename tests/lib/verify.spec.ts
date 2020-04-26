@@ -13,8 +13,10 @@ jest.mock("http", () => ({
 }));
 
 describe("verify module's test", () => {
-  it("If verify is called with verified token, it returns null.", async () => {
+  it('If verify is called with verified token, it returns {"statusCode": 999 }.', async () => {
     const twitterOauthGetSpy = jest.spyOn(twitterOauth, "get");
+
+    const returnObject = { statusCode: 999 };
 
     twitterOauthGetSpy.mockImplementation(
       (
@@ -28,14 +30,14 @@ describe("verify module's test", () => {
         return new http.ClientRequest(
           url,
           (response: http.IncomingMessage): void => {
-            callback({ statusCode: 999 }, data, response);
+            callback(returnObject, data, response);
           }
         );
       }
     );
 
     const error = await verify("accessToken", "accessTokenSecret");
-    expect(error).toBe(null);
+    expect(error).toBe(returnObject);
   });
 
   it("If verify is called with unverified token, it returns TwitterError.", async () => {
