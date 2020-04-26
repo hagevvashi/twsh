@@ -1,31 +1,48 @@
-const { resolve } = require('path');
-
 module.exports = {
-  extends: ['airbnb-base', 'prettier'],
-  plugins: ['prettier', '@typescript-eslint'],
-  parser: '@typescript-eslint/parser',
+  root: true,
+  extends: [
+    "airbnb-base",
+    "prettier",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:prettier/recommended",
+    "prettier/@typescript-eslint",
+  ],
+  plugins: ["prettier", "@typescript-eslint"],
+  parser: "@typescript-eslint/parser",
   parserOptions: {
-    sourceType: 'module',
-    project: resolve(__dirname, 'tsconfig.json')
-  },
-  rules: {
-    'prettier/prettier': ['error'],
-    'no-unused-vars': 'off',
-    camelcase: 'off',
-    '@typescript-eslint/no-unused-vars': 'error',
-    '@typescript-eslint/camelcase': ['error', { properties: 'never' }]
+    project: "./tsconfig.json",
   },
   env: {
     node: true,
-    es6: true,
-    commonjs: true,
-    jest: true
   },
   settings: {
-    'import/resolver': {
-      node: {
-        extensions: ['.ts', '.d.ts', '.tsx', '.js']
-      }
-    }
-  }
+    "import/resolver": {
+      typescript: {
+        directory: "./tsconfig.json",
+      },
+    },
+  },
+  rules: {
+    "import/prefer-default-export": 0,
+    "import/extensions": [
+      "error",
+      "ignorePackages",
+      {
+        ts: "never",
+      },
+    ],
+  },
+  overrides: [
+    {
+      files: ["**/*.spec.ts"],
+      parserOptions: {
+        project: "./tsconfig.test.json",
+      },
+      plugins: ["jest"],
+      env: { jest: true },
+      rules: {
+        "import/no-extraneous-dependencies": "off",
+      },
+    },
+  ],
 };

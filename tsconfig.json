@@ -1,17 +1,17 @@
 {
-  "target": "ESNEXT",
-  "module": "ESNext",
-  "sourceMap": true,
   "compilerOptions": {
-    "baseUrl": ".",
+    "target": "es2019",
+    "module": "commonjs",
     "outDir": "./lib/",
-    "lib": [ "es2015" ]
+    "declaration": true,
+    "downlevelIteration": true,
+    "strict": true,
+    "noImplicitAny": true,
+    "noUnusedLocals": true,
+    "noImplicitReturns": true,
+    "noFallthroughCasesInSwitch": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true
   },
-  "include": [
-    "./src/**/*"
-  ],
-  "exclude": [
-    ".git",
-    "node_modules"
-  ]
+  "include": ["./src/**/*"]
 }

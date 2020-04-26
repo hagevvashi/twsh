@@ -1,20 +1,20 @@
-import * as askModule from '../../src/lib/ask';
-import login from '../../src/lib/login';
-import localStorage from '../../src/lib/local-storage';
-import tweet from '../../src/app/tweet';
-import postTweet from '../../src/lib/post-tweet';
+import * as askModule from "../../src/lib/ask";
+import login from "../../src/lib/login";
+import localStorage from "../../src/lib/local-storage";
+import tweet from "../../src/app/tweet";
+import postTweet from "../../src/lib/post-tweet";
 
-jest.mock('../../src/lib/login');
-jest.mock('../../src/lib/post-tweet');
+jest.mock("../../src/lib/login");
+jest.mock("../../src/lib/post-tweet");
 
 describe("action's test (Integration test)", () => {
   it("When tweet method is called and localStorage's getItem method called with 'current_user' returns null, 'screen_name: null hasn't been authed yet.' and 'first, you must oauth' are displayed as standard output.", async () => {
-    const currentUser: null = null;
-    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, 'getItem');
+    const currentUser = null;
+    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, "getItem");
     getItemSpy.mockImplementation(() => currentUser);
 
     const standardOutputSpy: jest.SpyInstance = jest
-      .spyOn(process.stdout, 'write')
+      .spyOn(process.stdout, "write")
       .mockImplementation((): boolean => true);
 
     await tweet();
@@ -27,7 +27,7 @@ describe("action's test (Integration test)", () => {
 
     expect(process.stdout.write).toHaveBeenNthCalledWith(
       2,
-      'first, you must oauth.'
+      "first, you must oauth."
     );
 
     getItemSpy.mockRestore();
@@ -35,21 +35,21 @@ describe("action's test (Integration test)", () => {
   });
 
   it("When tweet method is called and localStorage's getItem method called with 'current_user' returns truthy value and login module returns error, that error is displayed as standard output.", async () => {
-    const errorMessage: string = 'something error';
+    const errorMessage = "something error";
 
-    const currentUser: string = 'current_user';
-    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, 'getItem');
+    const currentUser = "current_user";
+    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, "getItem");
     getItemSpy.mockImplementation(() => currentUser);
     const standardOutputSpy: jest.SpyInstance = jest
-      .spyOn(process.stdout, 'write')
+      .spyOn(process.stdout, "write")
       .mockImplementation((): boolean => true);
 
     (login as jest.Mock).mockResolvedValue(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve({
           error: new Error(errorMessage),
-          accessToken: 'access_token',
-          accessTokenSecret: 'access_token_secret'
+          accessToken: "access_token",
+          accessTokenSecret: "access_token_secret",
         })
       )
     );
@@ -73,32 +73,32 @@ describe("action's test (Integration test)", () => {
   });
 
   it("When tweet method is called and localStorage's getItem method called with 'current_user' returns truthy value and login module does't return error, you will tweet as #currentUser, and both askTweet and postTweet are called.", async () => {
-    const currentUser: string = 'current_user';
-    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, 'getItem');
+    const currentUser = "current_user";
+    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, "getItem");
     getItemSpy.mockImplementation(() => currentUser);
 
     const standardOutputSpy: jest.SpyInstance = jest
-      .spyOn(process.stdout, 'write')
+      .spyOn(process.stdout, "write")
       .mockImplementation((): boolean => true);
 
     const askTweetSpy: jest.SpyInstance = jest
-      .spyOn(askModule, 'askTweet')
-      .mockImplementation(async (): Promise<string> => 'tweet_content');
+      .spyOn(askModule, "askTweet")
+      .mockImplementation(async (): Promise<string> => "tweet_content");
 
     (login as jest.Mock).mockResolvedValue(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve({
           error: null,
-          accessToken: 'access_token',
-          accessTokenSecret: 'access_token_secret'
+          accessToken: "access_token",
+          accessTokenSecret: "access_token_secret",
         })
       )
     );
 
     (postTweet as jest.Mock).mockResolvedValue(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve({
-          error: null
+          error: null,
         })
       )
     );
@@ -120,35 +120,35 @@ describe("action's test (Integration test)", () => {
   });
 
   it("When tweet method is called and localStorage's getItem method called with 'current_user' returns truthy value and login module does't return error, you will tweet as #currentUser, and both askTweet and postTweet are called.", async () => {
-    const currentUser: string = 'current_user';
-    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, 'getItem');
+    const currentUser = "current_user";
+    const getItemSpy: jest.SpyInstance = jest.spyOn(localStorage, "getItem");
     getItemSpy.mockImplementation(() => currentUser);
 
     const standardOutputSpy: jest.SpyInstance = jest
-      .spyOn(process.stdout, 'write')
+      .spyOn(process.stdout, "write")
       .mockImplementation((): boolean => true);
 
     const askTweetSpy: jest.SpyInstance = jest
-      .spyOn(askModule, 'askTweet')
-      .mockImplementation(async (): Promise<string> => 'tweet_content');
+      .spyOn(askModule, "askTweet")
+      .mockImplementation(async (): Promise<string> => "tweet_content");
 
     (login as jest.Mock).mockResolvedValue(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve({
           error: null,
-          accessToken: 'access_token',
-          accessTokenSecret: 'access_token_secret'
+          accessToken: "access_token",
+          accessTokenSecret: "access_token_secret",
         })
       )
     );
 
-    const statusCode: number = 0;
-    const data: any = null;
+    const statusCode = 0;
+    const data = null;
 
     (postTweet as jest.Mock).mockResolvedValue(
-      new Promise(resolve =>
+      new Promise((resolve) =>
         resolve({
-          error: { statusCode, data }
+          error: { statusCode, data },
         })
       )
     );

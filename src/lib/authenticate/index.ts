@@ -1,24 +1,24 @@
-import TwitterError from '../../type/twitter-error';
-import { askPin } from '../ask';
-import localStorage from '../local-storage';
-import getRequestToken from './get-request-token';
-import authorize from './authorize';
+import { askPin } from "../ask";
+import localStorage from "../local-storage";
+import getRequestToken from "./get-request-token";
+import authorize from "./authorize";
+import type { TwitterError } from "../twitter-oauth";
 
-interface authData {
+type AuthData = {
   accessToken: string;
   accessTokenSecret: string;
-}
+};
 
 export default async (): Promise<{
   error: TwitterError | null;
-  screenName: string | null;
+  screenName: string;
 }> => {
   const { err, requestToken, requestTokenSecret } = await getRequestToken();
   if (err) {
-    return { error: err, screenName: null };
+    return { error: err, screenName: "error" };
   }
 
-  const pin: string = await askPin(requestToken);
+  const pin = await askPin(requestToken);
   const oauthResult: {
     error: TwitterError | null;
     accessToken: string;
@@ -28,26 +28,26 @@ export default async (): Promise<{
   const { error, accessToken, accessTokenSecret, result } = oauthResult;
 
   if (error) {
-    return { error, screenName: null };
+    return { error, screenName: "error" };
   }
 
   const screenName = result.screen_name;
-  const authData: authData = {
+  const authData: AuthData = {
     accessToken,
-    accessTokenSecret
+    accessTokenSecret,
   };
-  const savedAuthData: string = localStorage.getItem('user_auth_data');
-  const userAuthData: { [screenName: string]: authData } = savedAuthData
+  const savedAuthData = localStorage.getItem("user_auth_data");
+  const userAuthData: { [screenName: string]: AuthData } = savedAuthData
     ? JSON.parse(savedAuthData)
     : {};
   userAuthData[screenName] = authData;
   const userAuthString: string = JSON.stringify(userAuthData);
-  localStorage.setItem('user_auth_data', userAuthString);
+  localStorage.setItem("user_auth_data", userAuthString);
   process.stdout.write(`successfully saved the token of ${screenName}\n`);
 
   const retVal: { error: TwitterError | null; screenName: string } = {
     error: null,
-    screenName
+    screenName,
   };
   return retVal;
 };

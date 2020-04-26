@@ -1,6 +1,6 @@
-import authenticate from '../lib/authenticate';
-import login from '../lib/login';
-import localStorage from '../lib/local-storage';
+import authenticate from "../lib/authenticate";
+import login from "../lib/login";
+import localStorage from "../lib/local-storage";
 
 export default async (): Promise<void> => {
   const authResult = await authenticate();
@@ -15,5 +15,5 @@ export default async (): Promise<void> => {
     process.stdout.write(`${error}\n`);
     return;
   }
-  localStorage.setItem('current_user', screenName);
+  localStorage.setItem("current_user", screenName);
 };

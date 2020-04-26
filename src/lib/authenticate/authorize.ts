@@ -1,5 +1,5 @@
-import TwitterError from '../../type/twitter-error';
-import twitterOauth from '../twitter-oauth';
+import twitterOauth from "../twitter-oauth";
+import type { TwitterError } from "../twitter-oauth";
 
 export default (
   requestToken: string,
@@ -11,25 +11,23 @@ export default (
   accessTokenSecret: string;
   result: { screen_name: string };
 }> =>
-  new Promise(
-    (resolve): void => {
-      twitterOauth.getOAuthAccessToken(
-        requestToken,
-        requestTokenSecret,
-        pin,
-        (
-          err: TwitterError | null,
-          token: string,
-          secret: string,
-          result: { screen_name: string }
-        ): void => {
-          resolve({
-            error: err,
-            accessToken: token,
-            accessTokenSecret: secret,
-            result
-          });
-        }
-      );
-    }
-  );
+  new Promise((resolve): void => {
+    twitterOauth.getOAuthAccessToken(
+      requestToken,
+      requestTokenSecret,
+      pin,
+      (
+        err: TwitterError | null,
+        token: string,
+        secret: string,
+        result: { screen_name: string }
+      ): void => {
+        resolve({
+          error: err,
+          accessToken: token,
+          accessTokenSecret: secret,
+          result,
+        });
+      }
+    );
+  });

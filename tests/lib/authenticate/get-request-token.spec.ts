@@ -1,18 +1,18 @@
-import { oauth1tokenCallback } from 'oauth';
-import TwitterError from '../../../src/type/twitter-error';
-import twitterOauth from '../../../src/lib/twitter-oauth';
-import getRequestToken from '../../../src/lib/authenticate/get-request-token';
+import { oauth1tokenCallback } from "oauth";
+import twitterOauth from "../../../src/lib/twitter-oauth";
+import type { TwitterError } from "../../../src/lib/twitter-oauth";
+import getRequestToken from "../../../src/lib/authenticate/get-request-token";
 
 describe("This is the getRequestToken module's test.", () => {
-  it('If twitter api returns error, getRequestToken returns error what the api returns, requestToken and requestTokenSecret.', async () => {
+  it("If twitter api returns error, getRequestToken returns error what the api returns, requestToken and requestTokenSecret.", async () => {
     const error: TwitterError = { statusCode: 0 };
-    const requestToken: string = 'failed_request_oken';
-    const requestTokenSecret: string = 'failed_request_token_secret';
-    const parsedQueryString: any = { foo: 'bar' };
+    const requestToken = "failed_request_oken";
+    const requestTokenSecret = "failed_request_token_secret";
+    const parsedQueryString = { foo: "bar" };
 
     const twitterOauthGetOAuthRequestTokenSpy: jest.SpyInstance = jest.spyOn(
       twitterOauth,
-      'getOAuthRequestToken'
+      "getOAuthRequestToken"
     );
 
     twitterOauthGetOAuthRequestTokenSpy.mockImplementation(
@@ -31,15 +31,15 @@ describe("This is the getRequestToken module's test.", () => {
     expect(retVal.requestTokenSecret).toBe(requestTokenSecret);
   });
 
-  it('If twitter api returns null as error, getRequestToken returns null, requestToken and requestTokenSecret.', async () => {
-    const error: null = null;
-    const requestToken: string = 'failed_request_oken';
-    const requestTokenSecret: string = 'failed_request_token_secret';
-    const parsedQueryString: any = { foo: 'bar' };
+  it("If twitter api returns null as error, getRequestToken returns { statusCode: 999 }, requestToken and requestTokenSecret.", async () => {
+    const error = { statusCode: 999 };
+    const requestToken = "failed_request_oken";
+    const requestTokenSecret = "failed_request_token_secret";
+    const parsedQueryString = { foo: "bar" };
 
     const twitterOauthGetOAuthRequestTokenSpy: jest.SpyInstance = jest.spyOn(
       twitterOauth,
-      'getOAuthRequestToken'
+      "getOAuthRequestToken"
     );
 
     twitterOauthGetOAuthRequestTokenSpy.mockImplementation(
