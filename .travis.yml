@@ -3,7 +3,7 @@ env:
   - CC_TEST_REPORTER_ID=$CCKEY
 language: node_js
 node_js:
-- '16'
+- '14'
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
