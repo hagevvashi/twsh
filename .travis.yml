@@ -3,16 +3,16 @@ env:
   - CC_TEST_REPORTER_ID=$CCKEY
 language: node_js
 node_js:
-- '11'
+- '14'
 before_script:
 - curl -L https://codeclimate.com/downloads/test-reporter/test-reporter-latest-linux-amd64
   > ./cc-test-reporter
 - chmod +x ./cc-test-reporter
 - "./cc-test-reporter before-build"
-- yarn build
-- yarn eslint
+- npm run build
+- npm run eslint
 script:
-- yarn test --coverage
+- npm run test -- --coverage
 after_script:
 - "./cc-test-reporter after-build -t lcov --debug --exit-code $TRAVIS_TEST_RESULT"
 deploy:

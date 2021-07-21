@@ -27,5 +27,11 @@ module.exports = {
         extensions: ['.ts', '.d.ts', '.tsx', '.js']
       }
     }
-  }
+  },
+  overrides: [
+    {
+      files: ["*.spec.ts"],
+      // FIXME: todo
+    }
+  ]
 };
